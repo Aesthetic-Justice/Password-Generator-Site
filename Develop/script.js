@@ -6,71 +6,74 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   //A 2D Array that contains all potential choices
-  const choices2D = [];
+  const allCharArr2D = [];
+  
   //Lowercase characters, index 0
-  choices2D[0] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  allCharArr2D[0] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+ 
   //Uppercase characters, index 1
-  choices2D[1] = [];
-  for (let i = 0; i < choices2D[0].length; i++) {
-    choices2D[1].push(choices2D[0][i].toUpperCase());
+  allCharArr2D[1] = [];
+  
+  for (let i = 0; i < allCharArr2D[0].length; i++) {
+    allCharArr2D[1].push(allCharArr2D[0][i].toUpperCase());
   };
+  
   //Numerics, index 2
-  choices2D[2] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  allCharArr2D[2] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
   //Special Characters, index 3
-  choices2D[3] = ' !\"#$%&\'()*+\,-./:;<=>?@[\\]^_`{|}~'.split("");
+  allCharArr2D[3] = ' !\"#$%&\'()*+\,-./:;<=>?@[\\]^_`{|}~'.split("");
 
   //An array of bools, referring to Uppercase,Lowercase,Numerics, and SpecialCharacters respectively
-  const choices = [0, 0, 0, 0];
+  const choicesArr = [0, 0, 0, 0];
 
   //Confirm the 4 choices
-  let confirmchoice;
+  let promptConfirm;
   do {
-    confirmchoice = confirm("Do you want lowercase characters in your password?");
-    if (confirmchoice) {
-      choices[0] = 1;
+    promptConfirm = confirm("Do you want lowercase characters in your password?");
+    if (promptConfirm) {
+      choicesArr[0] = 1;
     };
 
-    confirmchoice = confirm("Do you want uppercase characters in your password?");
-    if (confirmchoice) {
-      choices[1] = 1;
+    promptConfirm = confirm("Do you want uppercase characters in your password?");
+    if (promptConfirm) {
+      choicesArr[1] = 1;
     };
 
-    confirmchoice = confirm("Do you want numeric characters in your password?");
-    if (confirmchoice) {
-      choices[2] = 1;
+    promptConfirm = confirm("Do you want numeric characters in your password?");
+    if (promptConfirm) {
+      choicesArr[2] = 1;
     };
 
-    confirmchoice = confirm("Do you want special characters in your password?");
-    if (confirmchoice) {
-      choices[3] = 1;
+    promptConfirm = confirm("Do you want special characters in your password?");
+    if (promptConfirm) {
+      choicesArr[3] = 1;
     };
-    if(choices[0] === 0 && choices[1] === 0 && choices[2] === 0 && choices[3] === 0){
+
+    //if all choices are declined, then loop, since a password with no characters doesn't exist
+    if(choicesArr[0] === 0 && choicesArr[1] === 0 && choicesArr[2] === 0 && choicesArr[3] === 0){
       window.alert("Invalid Entry: A password cannot be generated if all character options are declined.");
       continue;
     };
-  } while (choices[0] === 0 && choices[1] === 0 && choices[2] === 0 && choices[3] === 0);
+  } while (choicesArr[0] === 0 && choicesArr[1] === 0 && choicesArr[2] === 0 && choicesArr[3] === 0);
 
-  //the total number of potential characters the password could contain
-  const choicesTotalVal = (choices[0] * 26) + (choices[1] * 26) + (choices[2] * 10) + (choices[3] * 33);
-  const choicesTotal = [];
+  //All potential characters based on choices made above
+  const potCharArr = [];
 
-  //a for loop that iterates through all potential characters
-  for (let i = 0; i < choices2D.length; i++) {
+  //a loop that iterates through all potential characters, adding them to choicesTotal
+  for (let i = 0; i < allCharArr2D.length; i++) {
     //if the index in question is default(0), skip
-    if (choices[i] === 0) {
+    if (choicesArr[i] === 0) {
       continue;
     };
 
     //else, add them to total choices
-    for (let i2 = 0; i2 < choices2D[i].length; i2++) {
-      choicesTotal.push(choices2D[i][i2]);
+    for (let i2 = 0; i2 < allCharArr2D[i].length; i2++) {
+      potCharArr.push(allCharArr2D[i][i2]);
     };
   };
 
-  //the password, which this password will return
-  let password = [];
-
-  //the legnth of the password to be generated
+  //the length of the password to be generated
   let passwordLength;
 
   //Loop to ensure the password entry is valid
@@ -92,9 +95,12 @@ function generatePassword() {
     //loop password input until input is both a Number, and within bounds
   } while (passwordLength < 8 || passwordLength > 128||isNaN(passwordLength)==true);
 
-  //the main loop which generates password char by char
+  //the password, which this password will return
+  let password = [];
+
+  //the main loop which generates password char by char, randomly from the potential Char Array
   for (i = 0; i < passwordLength; i++) {
-    password.push(choicesTotal[Math.floor(Math.random() * choicesTotal.length)]);
+    password.push(potCharArr[Math.floor(Math.random() * potCharArr.length)]);
   };
 
   //returns the result
