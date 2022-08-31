@@ -64,7 +64,24 @@ function generatePassword() {
   let password = [];
 
   //the legnth of the password to be generated
-  let passwordLength = Math.floor(Math.random() * (120) + 8);
+  let passwordLength;
+
+  //Loop to ensure the password entry is valid
+  do{
+    //prompt the user for the length of the password
+    passwordLength = window.prompt("What length do you want the password to be?(min.8/max.128");
+    
+    //If the entered value is Not a Number, set it to 0, which fails the invalid below
+    if(isNaN(passwordLength)){
+      window.alert("Invalid Entry: Not a Number.\nPassword length must be between 8 and 128.")
+    }
+
+    //if passowrd is out of bounds, alert the user
+    if(passwordLength<8||passwordLength>128){
+      window.alert("Invalid Entry: Out of Bounds.\nPassword length must be between 8 and 128.");
+    }
+    //loop password input until input is both a Number, and within bounds
+  }while(passwordLength<8||passwordLength>128);
 
   //the main loop which generates password char by char
   for (i = 0; i < passwordLength; i++) {
