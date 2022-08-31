@@ -22,7 +22,26 @@ function generatePassword() {
   //An array of bools, referring to Uppercase,Lowercase,Numerics, and SpecialCharacters respectively
   const choices = [0, 0, 0, 0];
 
-  
+  //Confirm the 4 choices
+  let confirmchoice = confirm("Do you want lowercase characters in your password?");
+  if(confirmchoice){
+    choices[0]=1;
+  }
+
+  confirmchoice = confirm("Do you want uppercase characters in your password?");
+  if(confirmchoice){
+    choices[1]=1;
+  }
+
+  confirmchoice = confirm("Do you want numeric characters in your password?");
+  if(confirmchoice){
+    choices[2]=1;
+  }
+
+  confirmchoice = confirm("Do you want special characters in your password?");
+  if(confirmchoice){
+    choices[3]=1;
+  }
 
   //the total number of potential characters the password could contain
   const choicesTotalVal = (choices[0] * 26) + (choices[1] * 26) + (choices[2] * 10) + (choices[3] * 33);
@@ -31,7 +50,7 @@ function generatePassword() {
   //a for loop that iterates through all potential characters
   for(let i=0;i<choices2D.length;i++){
     //if the index in question is default(0), skip
-    if(choices[i]!==0){
+    if(choices[i]===0){
       continue;
     }
 
