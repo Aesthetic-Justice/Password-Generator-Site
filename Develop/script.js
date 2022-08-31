@@ -1,9 +1,10 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 function generatePassword() {
-  //An array of ints, referring to Uppercase,Lowercase,Numerics, and SpecialCharacters respectively with the number of potential chars
-  const choices = [0, 1, 0, 0];
   //A 2D Array that contains all potential choices
   const choices2D = [];
   //Lowercase characters, index 0
@@ -18,10 +19,14 @@ function generatePassword() {
   //Special Characters, index 3
   choices2D[3] = ' !\"#$%&\'()*+\,-./:;<=>?@[\\]^_`{|}~'.split("");
 
+  //An array of bools, referring to Uppercase,Lowercase,Numerics, and SpecialCharacters respectively
+  const choices = [0, 0, 0, 0];
+
+  
+
   //the total number of potential characters the password could contain
   const choicesTotalVal = (choices[0] * 26) + (choices[1] * 26) + (choices[2] * 10) + (choices[3] * 33);
   const choicesTotal = [];
-
 
   //a for loop that iterates through all potential characters
   for(let i=0;i<choices2D.length;i++){
@@ -36,12 +41,6 @@ function generatePassword() {
     }
   }
 
-  //prompt the user for their choices in a loop
-  //in the loop, set the digit in the array to the total num of potential characters(26,26,10,33)
-
-  
-  //if(choices)
-
   //the password, which this password will return
   let password = [];
 
@@ -52,11 +51,9 @@ function generatePassword() {
   for (i = 0; i < passwordLength; i++) {
     password.push(choicesTotal[Math.floor(Math.random() * choicesTotal.length)]);
   }
-  
-  let passwordReturn = password.join("");
 
   //returns the result
-  return passwordReturn;
+  return password.join("");
 }
 
 // Write password to the #password input
@@ -68,8 +65,3 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
-writePassword();
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
