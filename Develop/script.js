@@ -53,10 +53,10 @@ function generatePassword() {
     password.push(choicesTotal[Math.floor(Math.random() * choicesTotal.length)]);
   }
   
-  password = password.toString();
+  let passwordReturn = password.join("");
 
   //returns the result
-  return password;
+  return passwordReturn;
 }
 
 // Write password to the #password input
