@@ -7,17 +7,17 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword() {
   //A 2D Array that contains all potential choices
   const allCharArr2D = [];
-  
+
   //Lowercase characters, index 0
   allCharArr2D[0] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
- 
+
   //Uppercase characters, index 1
   allCharArr2D[1] = [];
-  
+
   for (let i = 0; i < allCharArr2D[0].length; i++) {
     allCharArr2D[1].push(allCharArr2D[0][i].toUpperCase());
   };
-  
+
   //Numerics, index 2
   allCharArr2D[2] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -51,7 +51,7 @@ function generatePassword() {
     };
 
     //if all choices are declined, then loop, since a password with no characters doesn't exist
-    if(choicesArr[0] === 0 && choicesArr[1] === 0 && choicesArr[2] === 0 && choicesArr[3] === 0){
+    if (choicesArr[0] === 0 && choicesArr[1] === 0 && choicesArr[2] === 0 && choicesArr[3] === 0) {
       window.alert("Invalid Entry: A password cannot be generated if all character options are declined.");
       continue;
     };
@@ -93,7 +93,7 @@ function generatePassword() {
       continue;
     };
     //loop password input until input is both a Number, and within bounds
-  } while (passwordLength < 8 || passwordLength > 128||isNaN(passwordLength)==true);
+  } while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength) == true);
 
   //the password, which this password will return
   let password = [];
@@ -104,9 +104,9 @@ function generatePassword() {
   };
 
   //if a key is a potential option, set the xth key to be one of said chars
-  for(let i = 0;i<choicesArr.length;i++){
-    if(choicesArr[i]){
-      password[i]=allCharArr2D[i][Math.floor(Math.random()*allCharArr2D[i].length)];
+  for (let i = 0; i < choicesArr.length; i++) {
+    if (choicesArr[i]) {
+      password[i] = allCharArr2D[i][Math.floor(Math.random() * allCharArr2D[i].length)];
     };
   };
 
