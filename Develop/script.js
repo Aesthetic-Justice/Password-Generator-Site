@@ -103,6 +103,13 @@ function generatePassword() {
     password.push(potCharArr[Math.floor(Math.random() * potCharArr.length)]);
   };
 
+  //if a key is a potential option, set the xth key to be one of said chars
+  for(let i = 0;i<choicesArr.length;i++){
+    if(choicesArr[i]){
+      password[i]=allCharArr2D[i][Math.floor(Math.random()*allCharArr2D[i].length)];
+    };
+  };
+
   //returns the result
   return password.join("");
 }
