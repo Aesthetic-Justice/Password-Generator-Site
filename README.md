@@ -12,7 +12,7 @@ N/A
 
 ## Usage
 
-Attached to this Github and [Linked here](https://www.google.com) are portals to the site in question. Users should click the large red button labelled "Generate Password". 
+Attached to this Github and [linked here](https://www.google.com) are portals to the site in question. Users should click the large red button labelled "Generate Password". 
 ![alt text](./Develop/Assets/Screencap.jpg "Screen-cap1")
 Afterwards, follow the commands given by the prompts and the site will produce for you a password based on your selected criteria.
 ![alt text](./Develop/Assets/Screencap2.jpg "Screen-cap2")
